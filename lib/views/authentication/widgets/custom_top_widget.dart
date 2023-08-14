@@ -27,7 +27,7 @@ class CustomTopWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      height: height ?? 120.h,
+      height: height ?? 130.h,
       width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(color: bgColor ?? Theme.of(context).scaffoldBackgroundColor),
       child: Padding(
@@ -45,13 +45,13 @@ class CustomTopWidget extends ConsumerWidget {
                         Get.back();
                       },
                       child: Card(
-                        color: Theme.of(context).canvasColor.withOpacity(0.1),
+                       // color: Theme.of(context).canvasColor.withOpacity(0.1),
                         shape: RoundedRectangleBorder(
-                         // side: BorderSide(width: 0.5.w),
-                          borderRadius: BorderRadius.circular(10.r)
+                          side: BorderSide(width: 0.5.w),
+                          borderRadius: BorderRadius.circular(7.r)
                         ),
                         child: Padding(
-                          padding:  EdgeInsets.all(10.0.w),
+                          padding:  EdgeInsets.all(8.0.w),
                           child:  Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context).iconTheme.color!.withOpacity(0.7),

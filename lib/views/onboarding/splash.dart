@@ -1,3 +1,4 @@
+import 'package:opticash/style/appColors.dart';
 import 'package:opticash/utils/images.dart';
 import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/utils/user_db.dart';
@@ -54,12 +55,20 @@ class _SplashViewState extends ConsumerState<SplashView>
     //bool _visible = true;
 
     return Scaffold(
+        backgroundColor: AppColors.black,
         body: Center(
-      child: ImageWidget(
-        asset: logoIcon,
-        height: 100.w,
-        width: 100.w,
-      ),
-    ));
+          child: Column(
+            children: [
+              const ImageWidget(
+                asset: splashBGImage,
+              ),
+              ImageWidget(
+                asset: logoIcon,
+                height: 100.w,
+                width: 100.w,
+              ),
+            ],
+          ),
+        ));
   }
 }

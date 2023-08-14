@@ -1,11 +1,10 @@
 import 'package:opticash/style/appColors.dart';
 import 'package:opticash/utils/constvalues.dart';
-import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/views/authentication/login.dart';
+import 'package:opticash/views/authentication/register_customer.dart';
 import 'package:opticash/widgets/app_logo_widget.dart';
 import 'package:opticash/widgets/custom_appbar.dart';
 import 'package:opticash/widgets/custom_button.dart';
-import 'package:opticash/widgets/image_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,7 +53,7 @@ class StepperScreen extends ConsumerWidget {
               title: "Create account",
               isLoading: false,
               onclick: () {
-               // Get.to(() => const SelectUserType());
+                Get.to(() =>  ResgisterCustomer());
               }),
           SizedBox(height: 10.h),
           ActionCustomButton(

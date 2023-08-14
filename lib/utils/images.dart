@@ -1,5 +1,5 @@
 
 
 const logoIcon = 'assets/images/logo.png';
-// const welcomeIcon = 'assets/images/welcomeIcon.png';
+const splashBGImage = 'assets/images/splash_bg.png';
 

@@ -41,7 +41,7 @@ class ActionCustomButton extends StatelessWidget {
                   ? BorderSide(
                       width: 1.w, color: borderColor ?? AppColors.primary)
                   : BorderSide.none),
-          color: btnColor ?? AppColors.primary,
+          color: btnColor ?? AppColors.black,
           child: Center(
             child: isLoading
                 ? SizedBox(

@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors extends ChangeNotifier {
-  static const secondary = Color(0xFF008080);
+  static const secondary = Color(0xFF46531F);
   static const themeOrange = Color(0xFFFF6928);
   static const themeBlue = Color(0xFF2894FF);
-  static const primary = Color(0xFF00398F);
+  static const primary = Color(0xFF749000);
  // static const secondary = Color(0xFFF9F5F2);
   static const gray = Color.fromARGB(255, 170, 170, 170);
   static const green = Color.fromARGB(255, 23, 196, 101);

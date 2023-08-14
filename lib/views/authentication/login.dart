@@ -1,4 +1,3 @@
-
 import 'package:opticash/providers/customer_auth_providers.dart';
 import 'package:opticash/viewModels/customer_auth_vm.dart';
 import 'package:opticash/views/authentication/widgets/custom_top_widget.dart';
@@ -28,7 +27,6 @@ class LoginPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var authViewModel = ref.watch(customerAuthViewModelProvider);
 
-
     Widget loginForm(
         {required BuildContext context,
         required CustomerAuthViewModel authViewModel}) {
@@ -43,7 +41,6 @@ class LoginPage extends ConsumerWidget {
               SizedBox(
                 height: 50.h,
               ),
-             
               SizedBox(
                 height: 20.h,
               ),
@@ -83,24 +80,20 @@ class LoginPage extends ConsumerWidget {
                 height: 10.h,
               ),
               Center(
-                      child: WordsButton(
-                          firstTextSize: 12.sp,
-                          secondTextSize: 12.sp,
-                          secondTextColor: AppColors.secondary,
-                          fontWeight2: FontWeight.bold,
-                          //underline: TextDecoration.underline,
-                          textHeight: 2,
-                          onTap: () {
-                           
-                          },
-                          firstText: "Forgot password?",
-                          secondText: "Reset Here"),
-                    ),
+                child: WordsButton(
+                    firstTextSize: 12.sp,
+                    secondTextSize: 12.sp,
+                    //underline: TextDecoration.underline,
+                    textHeight: 2,
+                    onTap: () {},
+                    firstText: "Forgot password?",
+                    secondText: ""),
+              ),
               SizedBox(
                 height: 20.h,
               ),
               ActionCustomButton(
-                  title: "LOGIN",
+                  title: "SIGN IN",
                   isLoading: false,
                   onclick: () {
                     FocusScope.of(context).unfocus();
@@ -122,13 +115,13 @@ class LoginPage extends ConsumerWidget {
                     secondTextSize: 12.sp,
                     secondTextColor: AppColors.secondary,
                     fontWeight2: FontWeight.bold,
-                    //underline: TextDecoration.underline,
+                    underline: TextDecoration.underline,
                     textHeight: 2,
                     onTap: () {
-                     // Get.to(() => const SelectUserType());
+                      // Get.to(() => const SelectUserType());
                     },
                     firstText: "Don’t have an account?",
-                    secondText: "Sign up"),
+                    secondText: "Create Account"),
               )
             ],
           ),
@@ -141,8 +134,10 @@ class LoginPage extends ConsumerWidget {
       body: Stack(
         children: [
           const CustomTopWidget(
-              title: "Log in",
-              subtitle: "Welcome back to easy laundry!",
+            textColor: AppColors.secondary,
+              title: "Sign In",
+              subtitle:
+                  "Sign In to your account using your email \naddress and password",
               isBack: true),
           Padding(
             padding: EdgeInsets.only(top: customTopBarPadding.h),
