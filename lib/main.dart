@@ -1,4 +1,3 @@
-
 import 'package:opticash/providers/providers.dart';
 import 'package:opticash/services/overlay_service.dart';
 import 'package:opticash/viewModels/theme_provider.dart';
@@ -17,11 +16,7 @@ Future<void> main() async {
 
   await LocalStorageManager.init();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarColor: Colors.transparent,
-  //   statusBarIconBrightness: Brightness.dark,
-  //   statusBarBrightness: Brightness.dark,
-  // ));
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -56,7 +51,7 @@ class MyApp extends ConsumerWidget {
                     statusBarColor: Colors.transparent),
                 child: GetMaterialApp(
                   debugShowCheckedModeBanner: false,
-                  title: 'opticash',
+                  title: 'Opticash',
                   darkTheme: themeDataMode.isdarkTheme!
                       ? themeDataMode.darkTheme
                       : themeDataMode.lightTheme,

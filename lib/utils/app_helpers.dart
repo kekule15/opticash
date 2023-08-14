@@ -65,55 +65,7 @@ class AppHelpers {
     return input.replaceAll(RegExp(r'^0+(?=.)'), '');
   }
 
-  static Map<String, dynamic> getCardColor(String? type) {
-    type = type!.toLowerCase();
-    if (type.contains("basic")) {
-      return {
-        'color': const Color(0xFF66110C),
-        'stripe': const Color(0xFF66110C).withOpacity(0.3),
-      };
-    } else if (type.contains("standard")) {
-      return {
-        'color': const Color(0xFF005E72),
-        'stripe': const Color(0xFF005E72).withOpacity(0.3),
-      };
-    } else if (type.contains("premium")) {
-      return {
-        'color': const Color(0xFFFFFFFF),
-        'stripe': const Color(0xff4F5050).withOpacity(0.3),
-      };
-    } else if (type.contains("deluxe")) {
-      return {
-        'color': const Color(0xFF2D292A),
-        'stripe': const Color(0xFF2D292A).withOpacity(0.3),
-      };
-    } else if (type.contains("plus")) {
-      return {
-        'color': const Color(0xFFBF871F),
-        'stripe': const Color(0xffD39B34),
-      };
-    } else if (type.contains("exclusive")) {
-      return {
-        'color': const Color(0xFF000000),
-        'stripe': const Color(0xff4F5050),
-      };
-    } else if (type.contains("ultra")) {
-      return {
-        'color': Color(AppColors.red.value),
-        'stripe': const Color.fromARGB(255, 255, 255, 254).withOpacity(0.5),
-      };
-    } else if (type.contains("diamond")) {
-      return {
-        'color': const Color.fromARGB(249, 161, 161, 161),
-        'stripe': const Color(0xff4F5050),
-      };
-    } else {
-      return {
-        'color': const Color(0xFF499F68),
-        'stripe': const Color(0xff71BE8D).withOpacity(0.3),
-      };
-    }
-  }
+
 
   static final currencyFormatter2 =
       NumberFormat.simpleCurrency(name: 'NGN', decimalDigits: 2);

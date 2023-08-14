@@ -1,4 +1,4 @@
-import 'package:opticash/utils/svgs.dart';
+import 'package:opticash/utils/images.dart';
 import 'package:opticash/widgets/image_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +14,8 @@ class AppLogoWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Align(
       alignment: alignment ?? Alignment.topLeft,
-      child: SvgImage(
-        asset: bubblelogo,
+      child: ImageWidget(
+        asset: logoIcon,
         height: height ?? 56.w,
         width: width ?? 80.w,
       ),

@@ -1,3 +1,4 @@
+import 'package:opticash/utils/images.dart';
 import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/views/home/navigation_page.dart';
@@ -54,8 +55,8 @@ class _SplashViewState extends ConsumerState<SplashView>
 
     return Scaffold(
         body: Center(
-      child: SvgImage(
-        asset: bubblelogo,
+      child: ImageWidget(
+        asset: logoIcon,
         height: 100.w,
         width: 100.w,
       ),

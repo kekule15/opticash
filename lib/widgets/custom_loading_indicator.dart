@@ -1,5 +1,6 @@
 
 import 'package:opticash/utils/constvalues.dart';
+import 'package:opticash/utils/images.dart';
 import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/widgets/image_widgets.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,8 @@ class CustomLogoLoadingIndicator extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: padding),
       child: SpinKitPumpingHeart(
         size: 200,
-        itemBuilder: (context, index) => const SvgImage(
-          asset: bubbleIcon,
+        itemBuilder: (context, index) => const ImageWidget(
+          asset: logoIcon,
         ),
       ),
     ));

@@ -46,9 +46,9 @@ class StepperScreen extends ConsumerWidget {
                 .copyWith(fontWeight: FontWeight.w300, fontSize: 14.sp),
           ),
           SizedBox(height: 10.h),
-          const SvgImage(
-            asset: bubbleContainerImage,
-          ),
+          // const SvgImage(
+          //   asset: bubbleContainerImage,
+          // ),
           SizedBox(height: 10.h),
           ActionCustomButton(
               title: "Create account",
