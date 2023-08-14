@@ -1,6 +1,7 @@
 import 'package:opticash/providers/customer_auth_providers.dart';
 import 'package:opticash/viewModels/customer_auth_vm.dart';
 import 'package:opticash/views/authentication/widgets/custom_top_widget.dart';
+import 'package:opticash/views/home/navigation_page.dart';
 import 'package:opticash/widgets/custom_appbar.dart';
 import 'package:flutter/services.dart';
 import 'package:opticash/style/appColors.dart';
@@ -98,13 +99,13 @@ class LoginPage extends ConsumerWidget {
                   onclick: () {
                     FocusScope.of(context).unfocus();
                     final validate = authViewModel.validateAndSave(formKey);
-                    if (validate) {
-                      authViewModel.login(
-                          email: emailController.text.trim(),
-                          password: passwordController.text.trim());
-                    }
+                    // if (validate) {
+                    //   authViewModel.login(
+                    //       email: emailController.text.trim(),
+                    //       password: passwordController.text.trim());
+                    // }
 
-                    // Get.to(() => const HomeNavigation());
+                     Get.to(() => const HomeNavigation());
                   }),
               SizedBox(
                 height: 20.h,

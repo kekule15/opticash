@@ -1,9 +1,17 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:opticash/providers/home_navigation_provider.dart';
 import 'package:opticash/style/appColors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:opticash/utils/images.dart';
+import 'package:opticash/utils/svgs.dart';
+import 'package:opticash/viewModels/theme_provider.dart';
 import 'package:opticash/views/home/home_page/home_view.dart';
+
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:opticash/widgets/image_widgets.dart';
 
 class HomeNavigation extends ConsumerStatefulWidget {
   const HomeNavigation({Key? key}) : super(key: key);
@@ -13,91 +21,87 @@ class HomeNavigation extends ConsumerStatefulWidget {
 }
 
 class _HomeNavigation extends ConsumerState<HomeNavigation> {
+  final iconList = <String>[homeIcon, cardIcon, swapIcon, accountIcon];
+
   @override
   Widget build(BuildContext context) {
-    final viewModel = ref.watch(homeViewModel);
     Future<bool> onBackPressed() {
       return Future.delayed(const Duration(seconds: 2));
     }
 
-   // final themeDataMode = ref.watch(themeDataProvider);
-    var index = ref.watch(homeViewModel).selectedIndex;
+    
+
+    var pageIndexModel = ref.watch(pageIndexprovider);
     return WillPopScope(
       onWillPop: onBackPressed,
       child: Scaffold(
-        backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
-        body: _pages.elementAt(ref.watch(homeViewModel).selectedIndex),
-        // drawer: const MyDrawerPage(),
-        bottomNavigationBar: Theme(
-          data: Theme.of(context),
-          child: BottomNavigationBar(
-            //backgroundColor: Colors.green,
-            elevation: 0,
-            type: BottomNavigationBarType.fixed,
-            showUnselectedLabels: true,
-            // unselectedItemColor:
-            //     Colors.red,
-
-            showSelectedLabels: true,
-            // selectedItemColor: AppColors.primary,
-            currentIndex: ref.watch(homeViewModel).selectedIndex,
-            onTap: viewModel.changeIndex,
-            items: [
-              BottomNavigationBarItem(
-                backgroundColor: Colors.red,
-                icon: Icon(Icons.home_max_outlined,
-                    color: index == 0
-                        ? AppColors.primary
-                        : Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .color),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-               // backgroundColor: Colors.white,
-                icon: Icon(Icons.receipt_long_outlined,
-                    color: index == 1
-                        ? AppColors.primary
-                        : Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .color),
-                label: "Quotes",
-              ),
-              BottomNavigationBarItem(
-                //backgroundColor: Colors.white,
-                icon: Icon(Icons.account_balance_wallet_outlined,
-                    color: index == 2
-                        ? AppColors.primary
-                        : Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .color),
-                label: "Payment",
-              ),
-              BottomNavigationBarItem(
-                //backgroundColor: Colors.white,
-                icon: Icon(Icons.person_4_outlined,
-                    color: index == 3
-                        ? AppColors.primary
-                        : Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .color),
-                label: "Account",
-              ),
-            ],
+        floatingActionButton: FloatingActionButton(
+          elevation: 8,
+          backgroundColor: AppColors.secondary,
+          child: CircleAvatar(
+            radius: 18.r,
+            backgroundColor: AppColors.secondary,
+            child: const ImageWidget(
+              asset: sendIcon,
+            ),
           ),
+          onPressed: () {
+            //Get.to(() => const CoverageIntro());
+          },
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          itemCount: iconList.length,
+          tabBuilder: (int index, bool isActive) {
+            return Padding(
+              padding: EdgeInsets.only(bottom: 3.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    iconList[index],
+                    color:  isActive
+                            ? AppColors.primary
+                            : AppColors.gray
+                       ,
+                    height: 20.w,
+                    width: 20.w,
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            );
+          },
+          activeIndex: pageIndexModel.currentIndex,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.defaultEdge,
+          onTap: pageIndexModel.setIndex,
+
+          //other params
+        ),
+        body: [
+          const HomePage(),
+          Container(),
+          Container(),
+          Container(),
+        ][pageIndexModel.currentIndex],
       ),
     );
   }
+}
 
-  static  List<Widget> _pages = <Widget>[
-    HomePage(),
-    Container(),
-    Container(),
-    Container()
-  ];
+final pageIndexprovider =
+    ChangeNotifierProvider<MainIndexProvider>((ref) => MainIndexProvider(ref));
+
+class MainIndexProvider extends ChangeNotifier {
+  int currentIndex = 0;
+  final Ref ref;
+
+  MainIndexProvider(this.ref);
+
+  setIndex(int newIndex) {
+    currentIndex = newIndex;
+    notifyListeners();
+  }
 }
