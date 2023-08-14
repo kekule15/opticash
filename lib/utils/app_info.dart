@@ -1,0 +1,1 @@
+String appVersion = "RenewableTek Africa v 1.0.1";
