@@ -70,6 +70,7 @@ class DialogWidgets {
       {required Widget child,
       required String title,
       required BuildContext context,
+      bool? showHeader,
       required WidgetRef ref}) {
   
 
@@ -82,7 +83,7 @@ class DialogWidgets {
         contentPadding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(5.r))),
-        title: Container(
+        title: showHeader ==  true? Container(
           height: 30.h,
           decoration: BoxDecoration(
               color: AppColors.primary,
@@ -98,7 +99,7 @@ class DialogWidgets {
                   ?.copyWith(color: AppColors.white, fontWeight: FontWeight.bold),
             ),
           ),
-        ),
+        ):const SizedBox(),
         content: child);
 
     // show the dialog

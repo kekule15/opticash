@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:opticash/providers/customer_auth_providers.dart';
 import 'package:opticash/utils/constvalues.dart';
 import 'package:opticash/viewModels/customer_auth_vm.dart';
+import 'package:opticash/views/authentication/widgets/confirm_dialog.dart';
 import 'package:opticash/views/authentication/widgets/custom_top_widget.dart';
 import 'package:opticash/widgets/buttons.dart';
 import 'package:opticash/widgets/confirmation_screen.dart';
@@ -16,8 +17,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:opticash/views/authentication/login.dart';
 import 'package:get/get.dart';
 
-class ResgisterCustomer extends ConsumerWidget {
-  ResgisterCustomer({super.key});
+class Resgister extends ConsumerWidget {
+  Resgister({super.key});
   final formKey = GlobalKey<FormState>();
   final fullNameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -45,7 +46,7 @@ class ResgisterCustomer extends ConsumerWidget {
               isBack: true),
           Padding(
             padding: EdgeInsets.only(top: customTopBarPadding.h),
-            child: registerForm(context: context, authViewModel: authViewModel),
+            child: registerForm(context: context, authViewModel: authViewModel, ref: ref),
           ),
         ],
       ),
@@ -54,7 +55,7 @@ class ResgisterCustomer extends ConsumerWidget {
 
   Widget registerForm(
       {required BuildContext context,
-      required CustomerAuthViewModel authViewModel}) {
+      required CustomerAuthViewModel authViewModel, required WidgetRef ref}) {
     return Form(
       key: formKey,
       child: Padding(
@@ -148,12 +149,14 @@ class ResgisterCustomer extends ConsumerWidget {
                 isLoading: false,
                 onclick: () {
                   FocusScope.of(context).unfocus();
-                  final validate = authViewModel.validateAndSave(formKey);
-                  if (validate) {
-                    authViewModel.login(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim());
-                  }
+                 // final validate = authViewModel.validateAndSave(formKey);
+
+                  showConfirmDialog(context: context, ref: ref);
+                  // if (validate) {
+                  //   authViewModel.login(
+                  //       email: emailController.text.trim(),
+                  //       password: passwordController.text.trim());
+                  // }
 
                   // Get.to(() => const HomeNavigation());
                 }),
@@ -214,146 +217,4 @@ class ResgisterCustomer extends ConsumerWidget {
     );
   }
 
-  //   return Scaffold(
-  //     body: ListView(
-  //       children: [
-  //         Form(
-  //           key: formKey,
-  //           child: Column(
-  //             children: [
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               Row(
-  //                 children: [
-  //                   Expanded(
-  //                     child: CustomField(
-  //                       headtext: "Name",
-  //                       validate: true,
-  //                       controller: fullNameController,
-  //                     ),
-  //                   ),
-  //                   SizedBox(
-  //                     width: 20.h,
-  //                   ),
-  //                   Expanded(
-  //                     child: CustomField(
-  //                       headtext: "Surname",
-  //                       validate: true,
-  //                       controller: userNameController,
-  //                       textInputFormatters: [
-  //                         FilteringTextInputFormatter.deny(RegExp('[ ]')),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               CustomField(
-  //                 headtext: "Email",
-  //                 validate: true,
-  //                 controller: emailController,
-  //                 textInputFormatters: [
-  //                   FilteringTextInputFormatter.deny(RegExp('[ ]')),
-  //                 ],
-  //               ),
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               CustomField(
-  //                 headtext: "Phone Number",
-  //                 hint: '+234-123456789',
-  //                 validate: true,
-  //                 controller: phoneController,
-  //                 textInputFormatters: [
-  //                   FilteringTextInputFormatter.deny(RegExp('[ ]')),
-  //                   FilteringTextInputFormatter.digitsOnly,
-  //                   FilteringTextInputFormatter.deny(RegExp('^0+')),
-  //                   LengthLimitingTextInputFormatter(11)
-  //                 ],
-  //               ),
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               CustomField(
-  //                 headtext: "Address",
-  //                 controller: referralController,
-  //               ),
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               CustomField(
-  //                 headtext: "Password",
-  //                 hint: '***********',
-  //                 validate: true,
-  //                 controller: passwordController,
-  //                 textInputFormatters: [
-  //                   FilteringTextInputFormatter.deny(RegExp('[ ]')),
-  //                 ],
-  //                 obscureText: viewModel.obscureText,
-  //                 sIcon: InkWell(
-  //                     onTap: () {
-  //                       viewModel.isObscure();
-  //                     },
-  //                     child: Icon(
-  //                       viewModel.obscureText
-  //                           ? Icons.visibility_off_outlined
-  //                           : Icons.remove_red_eye,
-  //                       size: 15.w,
-  //                     )),
-  //               ),
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               Center(
-  //                 child: WordsButton(
-  //                   secondTextSize: 12.sp,
-  //                   fontWeight2: FontWeight.w400,
-  //                   firstText: 'You agree to opticash',
-  //                   secondText: ' Terms and Conditions ',
-  //                   thirdText: " by creating an account ",
-  //                   underline: TextDecoration.underline,
-  //                   secondTextColor: AppColors.secondary,
-  //                   firstTextSize: 12.sp,
-  //                   thirdTextSize: 12.sp,
-  //                   onTap: () {},
-  //                 ),
-  //               ),
-  //               SizedBox(
-  //                 height: 20.h,
-  //               ),
-  //               ActionCustomButton(
-  //                   btnColor: AppColors.primary,
-  //                   title: "Signup",
-  //                   isLoading: false,
-  //                   onclick: () async {}),
-  //               SizedBox(
-  //                 height: 15.h,
-  //               ),
-  //               Center(
-  //                 child: WordsButton(
-  //                     firstTextSize: 13.sp,
-  //                     secondTextSize: 13.sp,
-  //                     secondTextColor: AppColors.secondary,
-  //                     fontWeight2: FontWeight.bold,
-  //                     textHeight: 2,
-  //                     onTap: () {
-  //                       Get.to(() => LoginPage());
-  //                     },
-  //                     firstText: "Have an existing account?",
-  //                     secondText: "Login"),
-  //               ),
-  //               SizedBox(
-  //                 height: 40.h,
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-
-  // }
 }

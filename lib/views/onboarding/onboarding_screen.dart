@@ -4,7 +4,7 @@ import 'package:opticash/style/appColors.dart';
 import 'package:opticash/utils/constvalues.dart';
 import 'package:opticash/utils/images.dart';
 import 'package:opticash/views/authentication/login.dart';
-import 'package:opticash/views/authentication/register_customer.dart';
+import 'package:opticash/views/authentication/register.dart';
 import 'package:opticash/widgets/app_logo_widget.dart';
 import 'package:opticash/widgets/buttons.dart';
 import 'package:opticash/widgets/custom_appbar.dart';
@@ -28,32 +28,28 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int indexData = 0;
   int _currentPage = 0;
   late Timer? _timer;
-  final PageController _pageController = PageController(
-    initialPage: 0,
-  );
+
   @override
   void initState() {
-    // GetStorage box = GetStorage();
-    // box.write('onboarding', 'value');
+  
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_currentPage < 3) {
-        _currentPage++;
+        setState(() {
+          _currentPage++;
+        });
       } else {
-        _currentPage = 3;
+        setState(() {
+          _currentPage = 0;
+        });
       }
 
-      _pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 600),
-        curve: Curves.easeOutBack,
-      );
+ 
     });
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
     _timer?.cancel();
     super.dispose();
   }
@@ -114,7 +110,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     height: 3.h,
                     width: MediaQuery.sizeOf(context).width / 6,
                     decoration: BoxDecoration(
-                        color:AppColors.secondary.withOpacity(0.3)),
+                        color: _currentPage >= index
+                            ? AppColors.primary
+                            : AppColors.gray4),
                   ))),
         ),
         SizedBox(height: 10.h),
@@ -124,7 +122,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             titleColor: AppColors.black,
             isLoading: false,
             onclick: () {
-              Get.to(() => ResgisterCustomer());
+              Get.to(() => Resgister());
             }),
         SizedBox(height: 10.h),
         Center(
