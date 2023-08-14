@@ -6,7 +6,7 @@ import 'package:opticash/utils/temporary_storage.dart';
 import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/viewModels/base_vm.dart';
 import 'package:opticash/views/home/navigation_page.dart';
-import 'package:opticash/views/onboarding/stepper_screen.dart';
+import 'package:opticash/views/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: depend_on_referenced_packages
@@ -80,7 +80,7 @@ class CustomerAuthViewModel extends BaseViewModel {
   }
 
   logout() async {
-    Get.offAll(() => const StepperScreen());
+    Get.offAll(() => const OnboardingScreen());
     NotifyMe.showAlert('Logged out successfully');
     await UserDB.deleteUser();
   }

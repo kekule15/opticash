@@ -3,7 +3,7 @@ import 'package:opticash/utils/images.dart';
 import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/views/home/navigation_page.dart';
-import 'package:opticash/views/onboarding/stepper_screen.dart';
+import 'package:opticash/views/onboarding/onboarding_screen.dart';
 import 'package:opticash/widgets/image_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +36,7 @@ class _SplashViewState extends ConsumerState<SplashView>
       ..addStatusListener((AnimationStatus status) {
         if (status == AnimationStatus.completed) {
           Get.off(() =>
-              user == null ? const StepperScreen() : const HomeNavigation());
+              user == null ? const OnboardingScreen() : const HomeNavigation());
         }
       }));
 

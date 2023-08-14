@@ -40,27 +40,17 @@ class MyApp extends ConsumerWidget {
     return ScreenUtilInit(
         designSize: const Size(360, 700),
         builder: (widget, child) => LoadingOverlayWidget(
-              child: AnnotatedRegion<SystemUiOverlayStyle>(
-                value: SystemUiOverlayStyle(
-                    statusBarBrightness: themeDataMode.isdarkTheme!
-                        ? Brightness.dark
-                        : Brightness.light,
-                    statusBarIconBrightness: themeDataMode.isdarkTheme!
-                        ? Brightness.light
-                        : Brightness.dark,
-                    statusBarColor: Colors.transparent),
-                child: GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Opticash',
-                  darkTheme: themeDataMode.isdarkTheme!
-                      ? themeDataMode.darkTheme
-                      : themeDataMode.lightTheme,
-                  themeMode: ThemeMode.system,
-                  theme: themeDataMode.isdarkTheme!
-                      ? themeDataMode.darkTheme
-                      : themeDataMode.lightTheme,
-                  home: const SplashView(),
-                ),
+              child: GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Opticash',
+                darkTheme: themeDataMode.isdarkTheme!
+                    ? themeDataMode.darkTheme
+                    : themeDataMode.lightTheme,
+                themeMode: ThemeMode.system,
+                theme: themeDataMode.isdarkTheme!
+                    ? themeDataMode.darkTheme
+                    : themeDataMode.lightTheme,
+                home: const SplashView(),
               ),
             ));
   }
