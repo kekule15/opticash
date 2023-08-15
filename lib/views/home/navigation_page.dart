@@ -22,14 +22,12 @@ class HomeNavigation extends ConsumerStatefulWidget {
 
 class _HomeNavigation extends ConsumerState<HomeNavigation> {
   final iconList = <String>[homeIcon, cardIcon, swapIcon, accountIcon];
-
+  final iconText = <String>["Home", "Card", "Swap", "Account"];
   @override
   Widget build(BuildContext context) {
     Future<bool> onBackPressed() {
       return Future.delayed(const Duration(seconds: 2));
     }
-
-    
 
     var pageIndexModel = ref.watch(pageIndexprovider);
     return WillPopScope(
@@ -61,13 +59,29 @@ class _HomeNavigation extends ConsumerState<HomeNavigation> {
                 children: [
                   SvgPicture.asset(
                     iconList[index],
-                    color:  isActive
-                            ? AppColors.primary
-                            : AppColors.gray
-                       ,
+                    color: isActive ? AppColors.primary : AppColors.gray,
                     height: 20.w,
                     width: 20.w,
                     fit: BoxFit.contain,
+                  ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Text(
+                    iconText[index],
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .headlineMedium!
+                        .copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10.sp,
+                            color: isActive
+                                ? AppColors.primary
+                                : Theme.of(context)
+                                    .primaryTextTheme
+                                    .headlineMedium!
+                                    .color),
                   ),
                 ],
               ),
