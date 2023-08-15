@@ -13,6 +13,8 @@ import 'package:opticash/widgets/image_widgets.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
+final hideAmountProvider = StateProvider<bool>((ref) => false);
+
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -44,6 +46,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   Widget mainComponent({required HomeViewModel viewModel}) {
+    bool stateValue = ref.watch(hideAmountProvider);
+    var toggleValue = ref.read(hideAmountProvider.notifier);
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(80.h),
@@ -169,7 +174,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           )),
       body: ListView(
-       
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         children: [
@@ -177,9 +181,9 @@ class _HomePageState extends ConsumerState<HomePage> {
             height: 20.h,
           ),
           Padding(
-             padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
             child: Stack(
-              // alignment: Alignment.bottomCenter,
               children: [
                 Container(
                   width: MediaQuery.sizeOf(context).width,
@@ -227,7 +231,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           height: 15.h,
                         ),
                         Text(
-                          '\$243,998',
+                          !stateValue ? '\$243,998' : "******",
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .primaryTextTheme
@@ -254,9 +258,16 @@ class _HomePageState extends ConsumerState<HomePage> {
                         SizedBox(
                           height: 5.h,
                         ),
-                        const Icon(
-                          Icons.visibility_off,
-                          color: AppColors.white,
+                        InkWell(
+                          onTap: () {
+                            toggleValue.state = !stateValue;
+                          },
+                          child: Icon(
+                            !stateValue
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: AppColors.white,
+                          ),
                         )
                       ],
                     ),
@@ -268,10 +279,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                     height: 80.h,
                     width: MediaQuery.sizeOf(context).width,
                     decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10.r),
+                            bottomRight: Radius.circular(10.r)),
                         color: AppColors.secondary.withOpacity(0.1)),
                     child: const Padding(
-                      padding:
-                          EdgeInsets.only(top: 20, left: 8, right: 8, bottom: 10),
+                      padding: EdgeInsets.only(
+                          top: 20, left: 8, right: 8, bottom: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -279,7 +293,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                               title: 'Send Money', icon: sendMoneyIcon),
                           QuickActionWidget(title: 'Top-Up', icon: topUpIcon),
                           QuickActionWidget(
-                              title: 'Account Details', icon: accountDetailsIcon)
+                              title: 'Account Details',
+                              icon: accountDetailsIcon)
                         ],
                       ),
                     ),
@@ -343,14 +358,16 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           // transaction history
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
             child: Text(
               'Today, 26 june 2021',
               textAlign: TextAlign.start,
-              style: Theme.of(context).primaryTextTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.sp,
-                  ),
+              style:
+                  Theme.of(context).primaryTextTheme.headlineMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17.sp,
+                      ),
             ),
           ),
           SizedBox(
@@ -358,7 +375,8 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
 
           Padding(
-             padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+            padding:
+                EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
             child: Card(
               color: AppColors.lightGrey.withOpacity(0.2),
               shape: RoundedRectangleBorder(
@@ -411,7 +429,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '- N1.890',
+                          !stateValue ? '- N1.890' : ' ******',
                           textAlign: TextAlign.start,
                           style: Theme.of(context)
                               .primaryTextTheme

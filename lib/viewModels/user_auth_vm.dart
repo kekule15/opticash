@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:opticash/providers/user_auth_providers.dart';
 import 'package:opticash/utils/logger.dart';
 import 'package:opticash/utils/notify_me.dart';

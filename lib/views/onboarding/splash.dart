@@ -15,10 +15,10 @@ class SplashView extends ConsumerStatefulWidget {
     Key? key,
   }) : super(key: key);
   @override
-  _SplashViewState createState() => _SplashViewState();
+  SplashViewState createState() => SplashViewState();
 }
 
-class _SplashViewState extends ConsumerState<SplashView>
+class SplashViewState extends ConsumerState<SplashView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

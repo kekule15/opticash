@@ -32,7 +32,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void initState() {
   
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 2), (Timer timer) {
       if (_currentPage < 3) {
         setState(() {
           _currentPage++;
@@ -114,7 +114,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             : AppColors.gray4),
                   ))),
         ),
-        SizedBox(height: 10.h),
+        SizedBox(height: 30.h),
         ActionCustomButton(
             title: "Create New Account",
             btnColor: AppColors.primary,
