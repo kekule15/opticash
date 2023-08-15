@@ -39,13 +39,12 @@ class ConfirmRegistrationDialog extends ConsumerWidget {
                         fontSize: 14.sp,
                       ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 20.h),
             ActionCustomButton(
                 btnColor: AppColors.secondary,
                 title: "SIGN IN",
                 isLoading: false,
                 onclick: () {
-                  
                   Get.to(() => LoginPage());
                 }),
             SizedBox(
@@ -58,11 +57,10 @@ class ConfirmRegistrationDialog extends ConsumerWidget {
   }
 }
 
-showConfirmDialog({required BuildContext context, required WidgetRef ref}) {
+showConfirmDialog({required BuildContext context,}) {
   return DialogWidgets.dialog(
       child: const ConfirmRegistrationDialog(),
       title: "",
       showHeader: false,
-      context: context,
-      ref: ref);
+      context: context,);
 }

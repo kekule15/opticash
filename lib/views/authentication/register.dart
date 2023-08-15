@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
-import 'package:opticash/providers/customer_auth_providers.dart';
+import 'package:opticash/providers/user_auth_providers.dart';
 import 'package:opticash/utils/constvalues.dart';
-import 'package:opticash/viewModels/customer_auth_vm.dart';
+import 'package:opticash/viewModels/user_auth_vm.dart';
 import 'package:opticash/views/authentication/widgets/confirm_dialog.dart';
 import 'package:opticash/views/authentication/widgets/custom_top_widget.dart';
 import 'package:opticash/widgets/buttons.dart';
@@ -20,14 +20,10 @@ import 'package:get/get.dart';
 class Resgister extends ConsumerWidget {
   Resgister({super.key});
   final formKey = GlobalKey<FormState>();
-  final fullNameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
-  final userNameController = TextEditingController();
-
-  final referralController = TextEditingController();
-  final phoneController = TextEditingController();
   final emailController = TextEditingController();
-  // final phoneController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var viewModel = ref.watch(customerAuthViewModelProvider);
@@ -46,7 +42,8 @@ class Resgister extends ConsumerWidget {
               isBack: true),
           Padding(
             padding: EdgeInsets.only(top: customTopBarPadding.h),
-            child: registerForm(context: context, authViewModel: authViewModel, ref: ref),
+            child: registerForm(
+                context: context, authViewModel: authViewModel, ref: ref),
           ),
         ],
       ),
@@ -55,7 +52,8 @@ class Resgister extends ConsumerWidget {
 
   Widget registerForm(
       {required BuildContext context,
-      required CustomerAuthViewModel authViewModel, required WidgetRef ref}) {
+      required USerAuthViewModel authViewModel,
+      required WidgetRef ref}) {
     return Form(
       key: formKey,
       child: Padding(
@@ -73,7 +71,7 @@ class Resgister extends ConsumerWidget {
             CustomField(
               headtext: "First Name",
               validate: true,
-              controller: emailController,
+              controller: firstNameController,
               textInputFormatters: [
                 FilteringTextInputFormatter.deny(RegExp('[ ]')),
               ],
@@ -84,7 +82,7 @@ class Resgister extends ConsumerWidget {
             CustomField(
               headtext: "Last Name",
               validate: true,
-              controller: emailController,
+              controller: lastNameController,
               textInputFormatters: [
                 FilteringTextInputFormatter.deny(RegExp('[ ]')),
               ],
@@ -149,14 +147,17 @@ class Resgister extends ConsumerWidget {
                 isLoading: false,
                 onclick: () {
                   FocusScope.of(context).unfocus();
-                 // final validate = authViewModel.validateAndSave(formKey);
+                  final validate = authViewModel.validateAndSave(formKey);
 
-                  showConfirmDialog(context: context, ref: ref);
-                  // if (validate) {
-                  //   authViewModel.login(
-                  //       email: emailController.text.trim(),
-                  //       password: passwordController.text.trim());
-                  // }
+                  // showConfirmDialog(context: context, ref: ref);
+                  if (validate) {
+                    authViewModel.registerUser(
+                        context: context,
+                        firstName: firstNameController.text.trim(),
+                        lastName: lastNameController.text.trim(),
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                  }
 
                   // Get.to(() => const HomeNavigation());
                 }),
@@ -216,5 +217,4 @@ class Resgister extends ConsumerWidget {
       ),
     );
   }
-
 }

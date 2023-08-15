@@ -1,7 +1,5 @@
 import 'package:opticash/http/api_manager.dart';
-import 'package:opticash/model/customer_notification_model.dart';
-import 'package:opticash/model/customer_response_model.dart';
-import 'package:opticash/model/file_upload_response_model.dart';
+import 'package:opticash/model/user_response.dart';
 import 'package:opticash/utils/logger.dart';
 import 'package:opticash/utils/strings.dart';
 import 'package:opticash/utils/temporary_storage.dart';
@@ -10,22 +8,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class UserAuthService extends ApiManager {
   final Ref reader;
 
-  final loginRoute = '/customer/login';
+  final loginRoute = '/user/test/login';
 
-  final intiateResetPasswordRoute = '/customer/initiate-password-reset';
-  final verifyResetOTPRoute = '/customer/verify-reset-otp';
-  final resetPasswordRoute = '/customer/reset-password';
-  final changePasswordRoute = '/customer/change-password/';
-  final customerDashboardRoute = '/customer/dashboard/';
-  final customerNotificationRoute = '/notification/customer/';
-  final getOneSiteRoute = '/siting/get-siting/';
-  final updateProfileImageRoute = '/customer/update/';
-  final uploadFileRoute = '/upload';
+  final registerRoute = '/user/test/register';
 
   UserAuthService(this.reader) : super(reader);
 
   //Login with email and password
-  Future<CustomerLoginResponseModel> loginCustomer(
+  Future<UserResponse> loginUser(
     String email,
     String password,
   ) async {
@@ -39,10 +29,30 @@ class UserAuthService extends ApiManager {
     var data = response.data;
 
     if (response.statusCode == 200) {
-      return CustomerLoginResponseModel.fromJson(response.data);
+      return UserResponse.fromJson(response.data);
     } else {
-      return CustomerLoginResponseModel(message: data['message'].toString());
+      return UserResponse(status: data['status'].toString());
     }
   }
 
+  //Login with email and password
+  Future registerUser({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+  }) async {
+    final signInBody = {
+      "first_name": firstName,
+      "last_name": lastName,
+      "email": email,
+      "password": password
+    };
+
+    final response = await postHttp(registerRoute, signInBody);
+
+    var data = response.data;
+
+    return data;
+  }
 }

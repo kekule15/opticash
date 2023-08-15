@@ -70,8 +70,7 @@ class DialogWidgets {
       {required Widget child,
       required String title,
       required BuildContext context,
-      bool? showHeader,
-      required WidgetRef ref}) {
+      bool? showHeader,}) {
   
 
     // set up the AlertDialog

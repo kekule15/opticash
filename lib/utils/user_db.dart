@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:opticash/model/customer_response_model.dart';
+import 'package:opticash/model/user_response.dart';
 import 'package:opticash/utils/temporary_storage.dart';
 
 class UserDB {

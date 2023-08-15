@@ -75,7 +75,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Hello, James!',
+                                'Hello, ${UserDB.getUser()!.firstName}',
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context)
                                     .primaryTextTheme
@@ -87,7 +87,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                               ),
                               SizedBox(height: 3.h),
                               Text(
-                                '@jhaymes102',
+                                '${UserDB.getUser()!.email}',
                                 textAlign: TextAlign.start,
                                 style: Theme.of(context)
                                     .primaryTextTheme
@@ -170,121 +170,124 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           )),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+       
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         children: [
           SizedBox(
             height: 20.h,
           ),
-          Stack(
-            // alignment: Alignment.bottomCenter,
-            children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width,
-                height: 150.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: AppColors.black,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(10.0.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 30.h,
-                        width: 170.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                          color: AppColors.primary,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const ImageWidget(asset: d3LogoIcon),
-                              Text(
-                                'Opticash Balance',
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14.sp,
-                                        color: AppColors.white),
-                              ),
-                              const SvgImage(asset: dropdownIcon)
-                            ],
+          Padding(
+             padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+            child: Stack(
+              // alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 150.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: AppColors.black,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 30.h,
+                          width: 170.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: AppColors.primary,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const ImageWidget(asset: d3LogoIcon),
+                                Text(
+                                  'Opticash Balance',
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .headlineMedium!
+                                      .copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14.sp,
+                                          color: AppColors.white),
+                                ),
+                                const SvgImage(asset: dropdownIcon)
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      Text(
-                        '\$243,998',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 35.sp,
-                                color: AppColors.white),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        '123848492920304.234 (OPCH)',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .copyWith(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 9.sp,
-                                color: AppColors.lightGreen),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      const Icon(
-                        Icons.visibility_off,
-                        color: AppColors.white,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 140.h),
-                child: Container(
-                  height: 80.h,
-                  width: MediaQuery.sizeOf(context).width,
-                  decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.1)),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.only(top: 20, left: 8, right: 8, bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        QuickActionWidget(
-                            title: 'Send Money', icon: sendMoneyIcon),
-                        QuickActionWidget(title: 'Top-Up', icon: topUpIcon),
-                        QuickActionWidget(
-                            title: 'Account Details', icon: accountDetailsIcon)
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        Text(
+                          '\$243,998',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .headlineMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 35.sp,
+                                  color: AppColors.white),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          '123848492920304.234 (OPCH)',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .headlineMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 9.sp,
+                                  color: AppColors.lightGreen),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        const Icon(
+                          Icons.visibility_off,
+                          color: AppColors.white,
+                        )
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.only(top: 140.h),
+                  child: Container(
+                    height: 80.h,
+                    width: MediaQuery.sizeOf(context).width,
+                    decoration: BoxDecoration(
+                        color: AppColors.secondary.withOpacity(0.1)),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.only(top: 20, left: 8, right: 8, bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          QuickActionWidget(
+                              title: 'Send Money', icon: sendMoneyIcon),
+                          QuickActionWidget(title: 'Top-Up', icon: topUpIcon),
+                          QuickActionWidget(
+                              title: 'Account Details', icon: accountDetailsIcon)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
 
           SizedBox(
@@ -296,7 +299,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             itemCount: scrollData().length,
             itemBuilder: (context, index, i) => Padding(
               padding: EdgeInsets.only(
-                  left: index == 0 ? 0 : 0, right: index == 1 ? 0 : 10),
+                  left: index == 0 ? 22 : 0, right: index == 1 ? 20 : 10),
               child: InkWell(
                   onTap: () {},
                   child: Container(
@@ -340,71 +343,57 @@ class _HomePageState extends ConsumerState<HomePage> {
             height: 20.h,
           ),
           // transaction history
-          Text(
-            'Today, 26 june 2021',
-            textAlign: TextAlign.start,
-            style: Theme.of(context).primaryTextTheme.headlineMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17.sp,
-                ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+            child: Text(
+              'Today, 26 june 2021',
+              textAlign: TextAlign.start,
+              style: Theme.of(context).primaryTextTheme.headlineMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.sp,
+                  ),
+            ),
           ),
           SizedBox(
             height: 20.h,
           ),
 
-          Card(
-            color: AppColors.lightGrey.withOpacity(0.2),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.r)),
-            child: Center(
-              child: ListTile(
-                isThreeLine: true,
-                minVerticalPadding: 17,
-                visualDensity:
-                    const VisualDensity(horizontal: -4, vertical: -4),
-                leading: const ImageWidget(asset: nigeriaIcon),
-                title: Text(
-                  'Transfer to James',
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context)
-                      .primaryTextTheme
-                      .headlineMedium!
-                      .copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.sp,
-                        // height: 2
-                      ),
-                ),
-                subtitle: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 3.w,
-                      backgroundColor: AppColors.orange,
-                    ),
-                    SizedBox(
-                      width: 5.h,
-                    ),
-                    Text(
-                      'Pending',
-                      textAlign: TextAlign.start,
-                      style: Theme.of(context)
-                          .primaryTextTheme
-                          .headlineMedium!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 10.sp,
-                              color: AppColors.orange),
-                    ),
-                  ],
-                ),
-                trailing: SizedBox(
-                  width: 100.w,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.center,
+          Padding(
+             padding: EdgeInsets.symmetric(horizontal: generalHorizontalPadding.w),
+            child: Card(
+              color: AppColors.lightGrey.withOpacity(0.2),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Center(
+                child: ListTile(
+                  isThreeLine: true,
+                  minVerticalPadding: 17,
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: -4),
+                  leading: const ImageWidget(asset: nigeriaIcon),
+                  title: Text(
+                    'Transfer to James',
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .headlineMedium!
+                        .copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.sp,
+                          // height: 2
+                        ),
+                  ),
+                  subtitle: Row(
                     children: [
+                      CircleAvatar(
+                        radius: 3.w,
+                        backgroundColor: AppColors.orange,
+                      ),
+                      SizedBox(
+                        width: 5.h,
+                      ),
                       Text(
-                        '- N1.890',
+                        'Pending',
                         textAlign: TextAlign.start,
                         style: Theme.of(context)
                             .primaryTextTheme
@@ -412,20 +401,40 @@ class _HomePageState extends ConsumerState<HomePage> {
                             .copyWith(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 10.sp,
-                                color: AppColors.red),
-                      ),
-                      Text(
-                        '10th July 2023',
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .headlineMedium!
-                            .copyWith(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 10.sp,
-                            ),
+                                color: AppColors.orange),
                       ),
                     ],
+                  ),
+                  trailing: SizedBox(
+                    width: 100.w,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '- N1.890',
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .headlineMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10.sp,
+                                  color: AppColors.red),
+                        ),
+                        Text(
+                          '10th July 2023',
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 10.sp,
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

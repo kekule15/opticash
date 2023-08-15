@@ -1,10 +1,11 @@
-
-import 'package:opticash/providers/customer_auth_providers.dart';
+import 'package:opticash/providers/user_auth_providers.dart';
+import 'package:opticash/utils/logger.dart';
 import 'package:opticash/utils/notify_me.dart';
 import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/utils/temporary_storage.dart';
 import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/viewModels/base_vm.dart';
+import 'package:opticash/views/authentication/widgets/confirm_dialog.dart';
 import 'package:opticash/views/home/navigation_page.dart';
 import 'package:opticash/views/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,31 +13,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dio/dio.dart' as dio;
 // ignore: depend_on_referenced_packages
-import 'package:http_parser/http_parser.dart';
 
-class CustomerAuthViewModel extends BaseViewModel {
+class USerAuthViewModel extends BaseViewModel {
   @override
   final Ref ref;
 
-  CustomerAuthViewModel(this.ref) : super(ref) {
+  USerAuthViewModel(this.ref) : super(ref) {
     // getDeviceId();
   }
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final loginPinController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  final bvnController = TextEditingController();
-  final otpController = TextEditingController();
-  final dobController = TextEditingController();
-
-  final firtNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final phoneController = TextEditingController();
-  final imageurlController = TextEditingController();
-
-
 
   String deviceId = '';
   final imagePicker = ImagePicker();
@@ -60,21 +45,41 @@ class CustomerAuthViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-
-
-
-  Future login({required String email, required String password}) async {
+  Future loginUser({required String email, required String password}) async {
     setBusy(true);
-    final res = await ref
-        .read(customerAuthServiceProvider)
-        .loginCustomer(email, password);
-
-    if (res.code == 200) {
-      await UserDB.addProfile(res.data!);
-      NotifyMe.showAlert(res.message!);
+    final res =
+        await ref.read(customerAuthServiceProvider).loginUser(email, password);
+    AppLogger.logg("Response $res");
+    if (res.status == 'success') {
+      await UserDB.addProfile(res.data!.user!);
+      NotifyMe.showAlert(res.status!);
       Get.to(() => const HomeNavigation());
     } else {
-      NotifyMe.showAlert(res.message!);
+      NotifyMe.showAlert(res.status!);
+    }
+    setBusy(false);
+  }
+
+  Future registerUser(
+      {required BuildContext context,
+      required String firstName,
+      required String lastName,
+      required String email,
+      required String password}) async {
+    setBusy(true);
+    final res = await ref.read(customerAuthServiceProvider).registerUser(
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password);
+
+    AppLogger.logg("Response $res");
+
+    if (res["status"] == "success") {
+      NotifyMe.showAlert(res["data"]);
+      if (context.mounted) showConfirmDialog(context: context);
+    } else {
+      NotifyMe.showAlert(res["data"]);
     }
     setBusy(false);
   }
@@ -84,6 +89,4 @@ class CustomerAuthViewModel extends BaseViewModel {
     NotifyMe.showAlert('Logged out successfully');
     await UserDB.deleteUser();
   }
-
- 
 }

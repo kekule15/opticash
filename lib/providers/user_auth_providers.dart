@@ -2,10 +2,10 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:opticash/services/auth_services.dart';
-import 'package:opticash/viewModels/customer_auth_vm.dart';
+import 'package:opticash/viewModels/user_auth_vm.dart';
 
-final customerAuthViewModelProvider = ChangeNotifierProvider<CustomerAuthViewModel>(
-    (ref) => CustomerAuthViewModel(ref));
+final customerAuthViewModelProvider = ChangeNotifierProvider<USerAuthViewModel>(
+    (ref) => USerAuthViewModel(ref));
 
 
 

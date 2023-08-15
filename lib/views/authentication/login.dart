@@ -1,5 +1,5 @@
-import 'package:opticash/providers/customer_auth_providers.dart';
-import 'package:opticash/viewModels/customer_auth_vm.dart';
+import 'package:opticash/providers/user_auth_providers.dart';
+import 'package:opticash/viewModels/user_auth_vm.dart';
 import 'package:opticash/views/authentication/widgets/custom_top_widget.dart';
 import 'package:opticash/views/home/navigation_page.dart';
 import 'package:opticash/widgets/custom_appbar.dart';
@@ -22,7 +22,6 @@ class LoginPage extends ConsumerWidget {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final userTypeController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +29,7 @@ class LoginPage extends ConsumerWidget {
 
     Widget loginForm(
         {required BuildContext context,
-        required CustomerAuthViewModel authViewModel}) {
+        required USerAuthViewModel authViewModel}) {
       return Form(
         key: formKey,
         child: Padding(
@@ -99,13 +98,13 @@ class LoginPage extends ConsumerWidget {
                   onclick: () {
                     FocusScope.of(context).unfocus();
                     final validate = authViewModel.validateAndSave(formKey);
-                    // if (validate) {
-                    //   authViewModel.login(
-                    //       email: emailController.text.trim(),
-                    //       password: passwordController.text.trim());
-                    // }
+                    if (validate) {
+                      authViewModel.loginUser(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim());
+                    }
 
-                     Get.to(() => const HomeNavigation());
+                    //Get.to(() => const HomeNavigation());
                   }),
               SizedBox(
                 height: 20.h,
@@ -135,7 +134,7 @@ class LoginPage extends ConsumerWidget {
       body: Stack(
         children: [
           const CustomTopWidget(
-            textColor: AppColors.secondary,
+              textColor: AppColors.secondary,
               title: "Sign In",
               subtitle:
                   "Sign In to your account using your email \naddress and password",
