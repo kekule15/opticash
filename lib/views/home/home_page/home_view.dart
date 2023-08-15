@@ -8,6 +8,7 @@ import 'package:opticash/viewModels/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:opticash/views/authentication/logout.dart';
 import 'package:opticash/views/home/home_page/widget/quick_action_widget.dart';
 import 'package:opticash/widgets/image_widgets.dart';
 
@@ -67,10 +68,15 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       Row(
                         children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            radius: 20.r,
-                            backgroundImage: const AssetImage(avatarIcon),
+                          InkWell(
+                            onTap: (){
+                              showLogout(context: context, ref: ref);
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: 20.r,
+                              backgroundImage: const AssetImage(avatarIcon),
+                            ),
                           ),
                           SizedBox(
                             width: 10.h,
