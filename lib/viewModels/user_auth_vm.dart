@@ -1,8 +1,6 @@
 import 'package:opticash/providers/user_auth_providers.dart';
 import 'package:opticash/utils/logger.dart';
 import 'package:opticash/utils/notify_me.dart';
-import 'package:opticash/utils/svgs.dart';
-import 'package:opticash/utils/temporary_storage.dart';
 import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/viewModels/base_vm.dart';
 import 'package:opticash/views/authentication/widgets/confirm_dialog.dart';

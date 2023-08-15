@@ -1,6 +1,5 @@
 import 'package:opticash/style/appColors.dart';
 import 'package:opticash/utils/images.dart';
-import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/views/home/navigation_page.dart';
 import 'package:opticash/views/onboarding/onboarding_screen.dart';

@@ -1,7 +1,6 @@
 import 'package:opticash/providers/user_auth_providers.dart';
 import 'package:opticash/viewModels/user_auth_vm.dart';
 import 'package:opticash/views/authentication/widgets/custom_top_widget.dart';
-import 'package:opticash/views/home/navigation_page.dart';
 import 'package:opticash/widgets/custom_appbar.dart';
 import 'package:flutter/services.dart';
 import 'package:opticash/style/appColors.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: depend_on_referenced_packages
-import 'package:get/get.dart';
 
 var selectUserTypeProvider = StateProvider.autoDispose<String>((ref) => '');
 

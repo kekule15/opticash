@@ -1,7 +1,6 @@
 
 import 'package:opticash/utils/constvalues.dart';
 import 'package:opticash/utils/images.dart';
-import 'package:opticash/utils/svgs.dart';
 import 'package:opticash/widgets/image_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

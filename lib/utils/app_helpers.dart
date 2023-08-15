@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'dart:math';
-import 'dart:ui';
 
-import 'package:opticash/style/appColors.dart';
 import 'package:intl/intl.dart';
 
 class AppHelpers {

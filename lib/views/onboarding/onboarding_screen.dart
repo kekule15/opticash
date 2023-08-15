@@ -5,7 +5,6 @@ import 'package:opticash/utils/constvalues.dart';
 import 'package:opticash/utils/images.dart';
 import 'package:opticash/views/authentication/login.dart';
 import 'package:opticash/views/authentication/register.dart';
-import 'package:opticash/widgets/app_logo_widget.dart';
 import 'package:opticash/widgets/buttons.dart';
 import 'package:opticash/widgets/custom_appbar.dart';
 import 'package:opticash/widgets/custom_button.dart';

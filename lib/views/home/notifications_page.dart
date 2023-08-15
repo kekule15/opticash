@@ -5,7 +5,6 @@ import 'package:opticash/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:opticash/widgets/app_bar.dart';
 
 class NotificationPage extends ConsumerStatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);

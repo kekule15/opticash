@@ -7,7 +7,6 @@ import 'package:opticash/utils/user_db.dart';
 import 'package:opticash/viewModels/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:opticash/views/home/home_page/widget/quick_action_widget.dart';
 import 'package:opticash/widgets/image_widgets.dart';

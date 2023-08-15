@@ -1,8 +1,5 @@
 import 'package:opticash/http/api_manager.dart';
 import 'package:opticash/model/user_response.dart';
-import 'package:opticash/utils/logger.dart';
-import 'package:opticash/utils/strings.dart';
-import 'package:opticash/utils/temporary_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserAuthService extends ApiManager {
