@@ -23,3 +23,11 @@ const payIcon = 'assets/images/pay.png';
 
 const earnIcon = 'assets/images/earn.png';
 
+
+const carouselBgIcon = 'assets/images/carousel_bg.png';
+
+const onboardingBgImage = 'assets/images/onboarding_bg.png';
+
+
+
+const walletBgImage = 'assets/images/walllet_bg.png';

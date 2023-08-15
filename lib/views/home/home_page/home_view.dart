@@ -29,12 +29,12 @@ class _HomePageState extends ConsumerState<HomePage> {
       {
         "icon": earnIcon,
         "text": "Refer a friend and earn \$3 per referral",
-        "color": AppColors.secondary
+        "color": AppColors.darkGreen
       },
       {
         "icon": payIcon,
         "text": "Refer a friend and earn \$3 per referral",
-        "color": AppColors.orange
+        "color": AppColors.darkBrown
       }
     ];
   }
@@ -195,6 +195,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   width: MediaQuery.sizeOf(context).width,
                   height: 150.h,
                   decoration: BoxDecoration(
+                      image: const DecorationImage(image: AssetImage(walletBgImage), fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(10.r),
                     color: AppColors.black,
                   ),
@@ -208,7 +209,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           height: 30.h,
                           width: 170.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
+                            borderRadius: BorderRadius.circular(18.r),
                             color: AppColors.primary,
                           ),
                           child: Padding(
@@ -326,6 +327,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     height: 90.h,
                     width: MediaQuery.sizeOf(context).width / 1.2,
                     decoration: BoxDecoration(
+                      image: const DecorationImage(image: AssetImage(carouselBgIcon), fit: BoxFit.fill),
                         color: scrollData()[index]["color"],
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Padding(
@@ -344,7 +346,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   .headlineMedium!
                                   .copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13.sp,
+                                      fontSize: 14.sp,
                                       color: AppColors.white),
                             ),
                           ),

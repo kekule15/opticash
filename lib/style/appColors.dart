@@ -10,6 +10,12 @@ class AppColors extends ChangeNotifier {
  // static const secondary = Color(0xFFF9F5F2);
   static const gray = Color.fromARGB(255, 170, 170, 170);
   static const lightGreen = Color(0xFFCDFF00);
+  static const darkGreen = Color(0xFF366542);
+
+  static const darkBrown = Color(0xFF4A4840);
+
+  
+ 
   static const gray4 = Color(0xFF495057);
   static const black = Color.fromARGB(255, 0, 0, 0);
   static const black1 = Color(0xFF19090A);

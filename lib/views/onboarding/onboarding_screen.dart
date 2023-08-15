@@ -60,15 +60,20 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         appBar: customAppBar(),
         body: Stack(
           children: [
-            const Stack(
+           const  Stack(
               alignment: Alignment.center,
               children: [
-                ImageWidget(asset: splashBGImage),
-                ImageWidget(asset: onboardingPeopleImage),
+                ImageWidget(asset: onboardingBgImage),
+                Positioned(
+                  bottom: 70,
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  child: ImageWidget(asset: onboardingPeopleImage)),
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 300.h),
+              padding: EdgeInsets.only(top: 350.h),
               child: onboardingWidget(context: context),
             )
           ],
